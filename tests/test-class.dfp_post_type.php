@@ -60,6 +60,7 @@ class Test_Post_Type extends WP_UnitTestCase {
 		update_post_meta( $this->post_id, 'dfp_ad_code', $this->dfp_ad_code );
 		update_post_meta( $this->post_id, 'dfp_position_name', $this->dfp_position_name );
 		update_post_meta( $this->post_id, 'dfp_position_sizes', $this->dfp_ad_sizes );
+		update_post_meta( $this->post_id, 'dfp_position_size_mapping', $this->dfp_ad_size_mapping );
 		update_post_meta( $this->post_id, 'dfp_out_of_page', $this->out_of_page );
 
 		return new \DFP_Ads\Position( $this->post_id );
@@ -141,6 +142,12 @@ class Test_Post_Type extends WP_UnitTestCase {
 				<td><label for="dfp_position_sizes" class="dfp-row-title">Ad Sizes</label></td>
 				<td align="left">
 					<textarea name="dfp_position_sizes" id="dfp_position_sizes" cols="49" rows="2">300x600</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td><label for="dfp_position_size_mapping" class="dfp-row-title">Ad Size Mapping</label></td>
+				<td align="left">
+					<textarea name="dfp_position_size_mapping" id="dfp_position_size_mapping" cols="49" rows="2">[[300x600,300x600]]</textarea>
 				</td>
 			</tr>
 			<tr>

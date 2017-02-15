@@ -145,6 +145,12 @@ function dfp_get_ad_sizes( $size_string ) {
 	return dfp_intval_array( dfp_trim_array( $sizes_array ) );
 }
 
+
+// size_mapping":[ [0,200],[728,90],[0,400],[0,50] ],
+function dfp_get_ad_size_mapping( $mapping_string ) {
+	return json_decode($mapping_string, true);
+}
+
 /**
  * Intvals an entire array recursively.
  *

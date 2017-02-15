@@ -51,6 +51,7 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 		update_post_meta( $this->post_id, 'dfp_ad_code', $this->dfp_ad_code );
 		update_post_meta( $this->post_id, 'dfp_position_name', $this->dfp_position_name );
 		update_post_meta( $this->post_id, 'dfp_position_sizes', $this->dfp_ad_sizes );
+		update_post_meta( $this->post_id, 'dfp_position_size_mapping', $this->dfp_ad_size_mapping );
 		update_post_meta( $this->post_id, 'dfp_out_of_page', $this->out_of_page );
 		$this->_dfp_ad_position = new \DFP_Ads\Position( $this->post_id );
 	}
@@ -68,6 +69,7 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_ad_code', 'NewCode_2015' ) );
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_position_name', 'NewCode_2015_Position' ) );
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_position_sizes', '200x100' ) );
+		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_position_size_mapping', [[['200x100'],['200x100']]] ) );
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_out_of_page', false ) );
 	}
 

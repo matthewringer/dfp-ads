@@ -299,7 +299,15 @@ Class DFP_Ads {
 	 * @return mixed Returns HTML data for the position
 	 */
 	public function shortcode( $atts ) {
-		$position = dfp_get_ad_position( $atts['id'] );
+
+		$position = '';
+
+		if(array_key_exists ( 'name', $atts)){
+			$position = dfp_get_ad_position_by_name( $atts['name'] );
+		}
+		else {
+			$position = dfp_get_ad_position( $atts['id'] );
+		}
 
 		return $position->get_position();
 	}

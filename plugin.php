@@ -45,7 +45,7 @@ use DFP_Ads\Admin\Import_Form as DFP_Ads_Import_Form;
 use DFP_Ads\Admin as DFP_Ads_Admin;
 
 if ( ! defined( 'DFP_CONCAT_SCRIPTS' ) ) {
-	define( 'DFP_CONCAT_SCRIPTS', true );
+	define( 'DFP_CONCAT_SCRIPTS', false );
 }
 /*
  * Initialization for Post Type
@@ -124,6 +124,16 @@ add_filter( DFP_Ads_Post_Type::FIELDS_FILTER, ( function ( $fields ) {
 			'type'  => 'textarea',
 			'name'  => 'dfp_position_sizes',
 			'label' => 'Ad Sizes',
+			'value' => '',
+		)
+	);
+	// Size Mapping
+	$fields[] = new DFP_Ads_Input(
+		array(
+			'id'    => 'dfp_position_size_mapping',
+			'type'  => 'textarea',
+			'name'  => 'dfp_position_size_mapping',
+			'label' => 'Ad Size Mapping',
 			'value' => '',
 		)
 	);

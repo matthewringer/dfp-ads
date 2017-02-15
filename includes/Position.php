@@ -68,6 +68,17 @@ class Position {
 	public $sizes = array();
 
 	/**
+	 * Ad size mapping. Maps device browser sizes to ad size.
+	 * Ex. [ [[1024, 768],[970, 250]], [[980, 690],[728, 90]] ]
+	 *
+	 * @access public
+	 * @since  0.0.1
+	 *
+	 * @var array
+	 */
+	public $size_mapping = array();
+
+	/**
 	 * Defines whether the slot should include Out of Page position
 	 *
 	 * @access public
@@ -128,6 +139,7 @@ class Position {
 			$this->ad_name      = $meta['dfp_ad_code'][0];
 			$this->position_tag = strtolower( 'Ad_Pos_' . $this->ad_name );
 			$this->sizes        = dfp_get_ad_sizes( $meta['dfp_position_sizes'][0] );
+			$this->size_mapping = dfp_get_ad_size_mapping( $meta['dfp_position_size_mapping'][0] );
 			$this->out_of_page  = ( isset( $meta['dfp_out_of_page'][0] ) ? true : false );
 		}
 	}
