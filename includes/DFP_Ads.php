@@ -301,15 +301,16 @@ Class DFP_Ads {
 	public function shortcode( $atts ) {
 
 		$position = '';
-
 		if(array_key_exists ( 'name', $atts)){
 			$position = dfp_get_ad_position_by_name( $atts['name'] );
 		}
 		else {
 			$position = dfp_get_ad_position( $atts['id'] );
 		}
-
-		return $position->get_position();
+		if(is_object($position)) {
+			$position = $position->get_position();
+		}
+		return $position;
 	}
 
 }
