@@ -151,6 +151,10 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 	 * @return string
 	 */
 	private function ad_position() {
+		$time    = microtime(true);
+		$mSecs   =  $time - floor($time);
+		$mSecs   =  str_replace('.','', substr($mSecs,1));
+
 		$position_tag   = $this->_dfp_ad_position->position_tag;
 		$ad_name        = $this->_dfp_ad_position->ad_name;
 		$position_class = 'dfp_ad_pos';
@@ -159,7 +163,7 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 <div id="$position_tag" class="$position_tag $ad_name $position_class">
 			<script type='text/javascript'>
 				googletag.cmd.push(function () {
-					googletag.display('$position_tag');
+					dfp_ads.display_ad_position('<?php $position_tag.'-'.$mSecs, 'dfp-ads'); ?>');
 				});
 			</script>
 </div>
