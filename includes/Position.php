@@ -207,7 +207,7 @@ class Position {
 		printf( __( '<!-- %1s -->', 'dfp-ads' ), $this->ad_name );
 		?>
 		<div id="<?php _e( $this->position_tag.'-'.$mSecs, 'dfp-ads' ); ?>"
-		     class="<?php _e( $this->position_tag, 'dfp-ads' ); ?> <?php _e( $this->ad_name, 'dfp-ads' ); ?> <?php _e( $this->position_class, 'dfp-ads' ); ?>" data-adpos = "<?php _e( $this->position_tag, 'dfp-ads' ); ?>">
+			class="<?php _e( $this->position_tag, 'dfp-ads' ); ?> <?php _e( $this->ad_name, 'dfp-ads' ); ?> <?php _e( $this->position_class, 'dfp-ads' ); ?>" data-adpos = "<?php _e( $this->position_tag, 'dfp-ads' ); ?>">
 			<script type='text/javascript'>
 				googletag.cmd.push(function () {
 					dfp_ads.display_ad_position('<?php _e( $this->position_tag.'-'.$mSecs, 'dfp-ads'); ?>');
