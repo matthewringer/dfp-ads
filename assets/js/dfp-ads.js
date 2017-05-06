@@ -33,14 +33,8 @@ var dfp_ads = function() {
     let slots = [];
     // Run through positions
     for (ad_pos = 0, len = positions.length; ad_pos < len; ++ad_pos) {
-      let position = define_ad_slot(positions[ad_pos]);
-      if(position.size_mapping ) {
-        slots.push( position );
-      }
+      define_ad_slot(positions[ad_pos]);
     }
-    //Listen for resize
-    //window.addEventListener("resize", ()=> { var resizeTimer; clearTimeout(resizeTimer); resizeTimer = setTimeout( () => googletag.pubads().refresh(slots) , 250); });
-
   }
 
   /**
@@ -50,7 +44,6 @@ var dfp_ads = function() {
    */
   function define_ad_slot(position) {
 
-    //todo: not sure how siteMaps effect OOPS
     let slot = googletag.defineSlot(
       acct_id + position.ad_name,
       position.sizes,
@@ -70,21 +63,6 @@ var dfp_ads = function() {
       ).addService(googletag.pubads());
     }
     return slot;
-  }
-
-  /**
-   * Define sizemapping
-   * @param sizes 728x90, 320x50
-   * TODO: hardcoded
-   */
-  function define_size_mapping(size_mapping) {
-      var sizeMapping = googletag.sizeMapping();
-      size_mapping.forEach( (m) => {
-        sizeMapping.addSize(m[0], m[1]);
-      });
-      var retval = sizeMapping.build();
-      console.log(retval);
-      return retval;
   }
 
   /**
