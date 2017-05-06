@@ -178,9 +178,16 @@ class Position {
 	 *
 	 * @return string HTML string that contains ad position
 	 */
-	public function get_position() {
+	public function get_position($unique=null) {
+
+		if( !isset($unique) ) {
+			$time    = microtime(true);
+			$mSecs   =  $time - floor($time);
+			$unique   =  str_replace('.','', substr($mSecs,1));
+		}
+
 		ob_start();
-		$this->create_position();
+		$this->create_position($unique);
 		$position_html = ob_get_contents();
 		ob_end_clean();
 
@@ -199,10 +206,8 @@ class Position {
 	 *
 	 * @return mixed
 	 */
-	private function create_position() {
-		$time    = microtime(true);
-		$mSecs   =  $time - floor($time);
-		$mSecs   =  str_replace('.','', substr($mSecs,1));
+	private function create_position($unique) {
+		
 
 		printf( __( '<!-- %1s -->', 'dfp-ads' ), $this->ad_name );
 		?>
@@ -210,7 +215,7 @@ class Position {
 			class="<?php _e( $this->position_tag, 'dfp-ads' ); ?> <?php _e( $this->ad_name, 'dfp-ads' ); ?> <?php _e( $this->position_class, 'dfp-ads' ); ?>" data-adpos = "<?php _e( $this->position_tag, 'dfp-ads' ); ?>">
 			<script type='text/javascript'>
 				googletag.cmd.push(function () {
-					dfp_ads.display_ad_position('<?php _e( $this->position_tag.'-'.$mSecs, 'dfp-ads'); ?>');
+					dfp_ads.display_ad_position('<?php _e( $this->position_tag.'-'.$unique, 'dfp-ads'); ?>');
 				});
 			</script>
 		</div>

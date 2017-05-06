@@ -142,7 +142,7 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 	public function valid_ad_position() {
 		$is_string = is_string( $this->_dfp_ad_position->get_position() );
 		$this->assertTrue( $is_string, 'Ad Position is not a string' );
-		$this->assertXmlStringEqualsXmlString( $this->ad_position(), $this->_dfp_ad_position->get_position() );
+		$this->assertXmlStringEqualsXmlString( $this->ad_position(), $this->_dfp_ad_position->get_position('1') );
 	}
 
 	/**
@@ -151,10 +151,6 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 	 * @return string
 	 */
 	private function ad_position() {
-		$time    = microtime(true);
-		$mSecs   =  $time - floor($time);
-		$mSecs   =  str_replace('.','', substr($mSecs,1));
-
 		$position_tag   = $this->_dfp_ad_position->position_tag;
 		$ad_name        = $this->_dfp_ad_position->ad_name;
 		$position_class = 'dfp_ad_pos';
@@ -163,7 +159,7 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 <div id="$position_tag" class="$position_tag $ad_name $position_class">
 			<script type='text/javascript'>
 				googletag.cmd.push(function () {
-					dfp_ads.display_ad_position('<?php $position_tag.'-'.$mSecs, 'dfp-ads'); ?>');
+					dfp_ads.display_ad_position('<?php $position_tag.'-1', 'dfp-ads'); ?>');
 				});
 			</script>
 </div>
