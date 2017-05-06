@@ -161,11 +161,11 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 		$html           = <<<HERENOW
 <!-- $ad_name -->
 <div id="$position_tag" class="$position_tag $ad_name $position_class">
-	<script type='text/javascript'>
-		googletag.cmd.push(function () {
-			dfp_ads.display_ad_position('<?php $position_tag.'-'.$mSecs, 'dfp-ads'); ?>');
-		});
-	</script>
+			<script type='text/javascript'>
+				googletag.cmd.push(function () {
+					dfp_ads.display_ad_position('<?php $position_tag.'-'.$mSecs, 'dfp-ads'); ?>');
+				});
+			</script>
 </div>
 HERENOW;
 

@@ -157,6 +157,7 @@ class Import_Form extends Form {
         update_post_meta( $ad_post_id, 'dfp_ad_code', $position['#Code'] );
         update_post_meta( $ad_post_id, 'dfp_position_name', $position['Name'] );
         update_post_meta( $ad_post_id, 'dfp_position_sizes', $position['Sizes'] );
+        update_post_meta( $ad_post_id, 'dfp_position_size_mapping', $position['SizeMapping'] );
     }
 
 	public function file( $args ) {

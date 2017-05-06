@@ -58,7 +58,6 @@ var dfp_ads = function() {
     );
 
     if(position.size_mapping !== undefined) {
-      //let sizeMap = define_size_mapping(position.size_mapping);
       slot.defineSizeMapping(position.size_mapping);
     }
 
@@ -82,7 +81,6 @@ var dfp_ads = function() {
       var sizeMapping = googletag.sizeMapping();
       size_mapping.forEach( (m) => {
         sizeMapping.addSize(m[0], m[1]);
-        //sizeMapping.addSize([980, 690], [728, 90]);
       });
       var retval = sizeMapping.build();
       console.log(retval);

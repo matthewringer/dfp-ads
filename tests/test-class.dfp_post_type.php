@@ -28,6 +28,7 @@ class Test_Post_Type extends WP_UnitTestCase {
 	protected $ad_title          = 'Ad Position 1';
 	protected $dfp_ad_code       = 'ad_position_1';
 	protected $dfp_ad_sizes      = '300x600';
+	protected $dfp_ad_size_mapping = '[[300],[600]]';
 	protected $out_of_page       = true;
 
 	/**
@@ -147,7 +148,7 @@ class Test_Post_Type extends WP_UnitTestCase {
 			<tr>
 				<td><label for="dfp_position_size_mapping" class="dfp-row-title">Ad Size Mapping</label></td>
 				<td align="left">
-					<textarea name="dfp_position_size_mapping" id="dfp_position_size_mapping" cols="49" rows="2">[[300x600,300x600]]</textarea>
+					<textarea name="dfp_position_size_mapping" id="dfp_position_size_mapping" cols="49" rows="2">[[[300x600,300x600]]]</textarea>
 				</td>
 			</tr>
 			<tr>
