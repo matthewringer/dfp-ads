@@ -70,7 +70,7 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_ad_code', 'NewCode_2015' ) );
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_position_name', 'NewCode_2015_Position' ) );
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_position_sizes', '200x100' ) );
-		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_position_size_mapping', '[[[1024,768],[[970,250]]]]' ) );
+		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_position_size_mapping', '[[[1024,768],[[970,350]]]]' ) ); //needs to be different...
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_out_of_page', false ) );
 	}
 
