@@ -156,7 +156,7 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 		$position_class = 'dfp_ad_pos';
 		$html           = <<<HERENOW
 <!-- $ad_name -->
-<div id="$position_tag" class="$position_tag $ad_name $position_class">
+<div id="$position_tag" class="$position_tag $ad_name $position_class" data-adpos="$position_tag">
 			<script type='text/javascript'>
 				googletag.cmd.push(function () {
 					dfp_ads.display_ad_position('$position_tag');
