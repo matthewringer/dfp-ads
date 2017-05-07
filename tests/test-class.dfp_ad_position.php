@@ -30,6 +30,7 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 	protected $ad_title = 'Ad Position 1';
 	protected $dfp_ad_code = 'ad_position_1';
 	protected $dfp_ad_sizes = '300x600';
+	protected $dfp_ad_size_mapping = '[[[1024,768 ],[[970,250]]]]';
 	protected $out_of_page = true;
 
 	/**
@@ -69,7 +70,7 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_ad_code', 'NewCode_2015' ) );
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_position_name', 'NewCode_2015_Position' ) );
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_position_sizes', '200x100' ) );
-		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_position_size_mapping', "[[['200x100'],['200x100']]]" ) );
+		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_position_size_mapping', "[[[1024,768 ],[[970,250]]]]" ) );
 		$this->assertTrue( update_post_meta( $ad_post_id, 'dfp_out_of_page', false ) );
 	}
 
@@ -151,15 +152,16 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 	 * @return string
 	 */
 	private function ad_position() {
-		$position_tag   = $this->_dfp_ad_position->position_tag.'-'.'1';
+		$position_tag   = $this->_dfp_ad_position->position_tag;
+		$position_id   = $position_tag.'-'.'1';
 		$ad_name        = $this->_dfp_ad_position->ad_name;
 		$position_class = 'dfp_ad_pos';
 		$html           = <<<HERENOW
 <!-- $ad_name -->
-<div id="$position_tag" class="$position_tag $ad_name $position_class" data-adpos="$position_tag">
+<div id="$position_id" class="$position_tag $ad_name $position_class" data-adpos="$position_tag">
 			<script type='text/javascript'>
 				googletag.cmd.push(function () {
-					dfp_ads.display_ad_position('$position_tag');
+					dfp_ads.display_ad_position('$position_id');
 				});
 			</script>
 </div>

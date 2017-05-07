@@ -147,7 +147,7 @@ class Position {
 			$this->ad_name      = $meta['dfp_ad_code'][0];
 			$this->position_tag = strtolower( 'Ad_Pos_' . $this->ad_name );
 			$this->sizes        = dfp_get_ad_sizes( $meta['dfp_position_sizes'][0] );
-			$this->size_mapping = $meta['dfp_position_size_mapping'];
+			$this->size_mapping = ( array_key_exists( 'dfp_position_size_mapping', $meta ) ) ? $meta['dfp_position_size_mapping'] : null;
 			$this->out_of_page  = ( isset( $meta['dfp_out_of_page'][0] ) ? true : false );
 		}
 	}
@@ -207,15 +207,15 @@ class Position {
 	 * @return mixed
 	 */
 	private function create_position($unique) {
-
-		$position_tag = $this->position_tag.'-'.$unique;
+		$position_tag = $this->position_tag;
+		$position_id = $this->position_tag.'-'.$unique;
 
 		printf( __( '<!-- %1s -->', 'dfp-ads' ), $this->ad_name );
 		?>
-		<div id="<?php _e( $position_tag, 'dfp-ads' ); ?>" class="<?php _e( $position_tag, 'dfp-ads' ); ?> <?php _e( $this->ad_name, 'dfp-ads' ); ?> <?php _e( $this->position_class, 'dfp-ads' ); ?>" data-adpos = "<?php _e( $position_tag, 'dfp-ads' ); ?>">
+		<div id="<?php _e( $position_id, 'dfp-ads' ); ?>" class="<?php _e( $position_tag, 'dfp-ads' ); ?> <?php _e( $this->ad_name, 'dfp-ads' ); ?> <?php _e( $this->position_class, 'dfp-ads' ); ?>" data-adpos = "<?php _e( $position_tag, 'dfp-ads' ); ?>">
 			<script type='text/javascript'>
 				googletag.cmd.push(function () {
-					dfp_ads.display_ad_position('<?php _e( $position_tag, 'dfp-ads'); ?>');
+					dfp_ads.display_ad_position('<?php _e( $position_id, 'dfp-ads'); ?>');
 				});
 			</script>
 		</div>
