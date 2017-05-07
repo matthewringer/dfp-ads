@@ -151,7 +151,7 @@ class Test_DFP_Ad_Position extends WP_UnitTestCase {
 	 * @return string
 	 */
 	private function ad_position() {
-		$position_tag   = $this->_dfp_ad_position->position_tag.'-'.'2';
+		$position_tag   = $this->_dfp_ad_position->position_tag.'-'.'1';
 		$ad_name        = $this->_dfp_ad_position->ad_name;
 		$position_class = 'dfp_ad_pos';
 		$html           = <<<HERENOW
