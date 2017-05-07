@@ -11,11 +11,11 @@ php:
 - 5.5
 env:
   matrix:
-  - WP_VERSION=latest WP_MULTISITE=0
+  - WP_VERSION=latest WP_MULTISITE=0 COMPOSER_ALLOW_XDEBUG=0
 matrix:
   include:
   - php: 5.4
-    env: WP_VERSION=latest WP_MULTISITE=1
+    env: WP_VERSION=latest WP_MULTISITE=1 COMPOSER_ALLOW_XDEBUG=0
 before_script:
   - composer self-update
   - composer install
