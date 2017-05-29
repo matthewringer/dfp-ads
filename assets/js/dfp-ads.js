@@ -11,6 +11,8 @@ var dfp_ads = function() {
 
   /** 
    * Create a new ad position based using the ad unit info as a template.
+   * 
+   * @param {string} id - div id of the ad postion wrapper
   */
   function display_ad_position(id){
       let ad_slot = document.querySelector(`#${id}`);
@@ -26,20 +28,6 @@ var dfp_ads = function() {
   /**
    * Loads Ad Position
    *
-   * @param {Array} positions - Array of ad positions
-   */
-  function load_ad_positions(positions) {
-    var ad_pos, len;
-    let slots = [];
-    // Run through positions
-    for (ad_pos = 0, len = positions.length; ad_pos < len; ++ad_pos) {
-      define_ad_slot(positions[ad_pos]);
-    }
-  }
-
-  /**
-   * Loads Ad Position
-   *
    * @param {Object} position - Array of ad positions
    */
   function define_ad_slot(position) {
@@ -50,8 +38,24 @@ var dfp_ads = function() {
       position.position_tag
     );
 
-    if(position.size_mapping !== undefined) {
-      slot.defineSizeMapping(position.size_mapping);
+    if(position.size_mapping !== undefined && position.size_mapping !== null) {
+      let mapping = JSON.parse(position.size_mapping);
+      //console.log( mapping );
+      // let mapping = googletag.sizeMapping().
+      // addSize([970, 0], [970, 250]).
+      // addSize([0, 0], [300, 250]).
+      // build();
+
+      slot.defineSizeMapping(mapping);
+      
+      //addSize([1024, 768], [970, 250]).
+      //addSize([0, 0], [970, 250]).
+
+      $(window).resize({ad_slot: slot}, function(e){
+        console.log('resized');
+        console.log(e.data);
+        googletag.pubads().refresh([e.data.ad_slot])
+      });
     }
 
     slot.addService(googletag.pubads());
@@ -62,6 +66,7 @@ var dfp_ads = function() {
         position.position_tag + '-oop'
       ).addService(googletag.pubads());
     }
+
     return slot;
   }
 
@@ -75,9 +80,6 @@ var dfp_ads = function() {
       googletag.pubads().setTargeting(key, targeting[target]);
     }
   }
-
-  // Generates Ad Slots
-  //load_ad_positions(dfp_ad_data.positions);
 
   return { 'display_ad_position' : display_ad_position };
 } ();
